@@ -1,0 +1,22 @@
+name: Wave release
+branding:
+  icon: 'tag'
+  color: 'purple'
+inputs:
+  github_token_tag:
+    description: 'The github token used to tag new versions'
+    required: false
+    default: ${{ github.token }}
+  repo_name:
+    description: 'The github owner/repository, eg: BetaProjectWave/address-service'
+    required: false
+    default: ${{ github.repository }}
+outputs:
+  version:
+    description: 'The released version tag'
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    GITHUB_TOKEN_TAG: ${{ inputs.github_token_tag }}
+    REPO: ${{ inputs.repo_name }}
