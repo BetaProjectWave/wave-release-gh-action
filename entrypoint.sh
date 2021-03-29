@@ -94,7 +94,7 @@ newVersion="v${a[0]}.${a[1]}.${a[2]}"
 
 echo "New version number: $newVersion"
 
-curl -X POST -H "Authorization: token $GITHUB_TOKEN_TAG" -s --fail -d "{\"tag_name\": \"$newVersion\",\"target_commitish\":\"$CIRCLE_SHA1\",\"name\": \"$newVersion - $COMMIT_MSG\",\"body\": $prBody}" $releaseUrl
+curl -X POST -H "Authorization: token $GITHUB_TOKEN_TAG" -s --fail -d "{\"tag_name\": \"$newVersion\",\"target_commitish\":\"$GITHUB_SHA\",\"name\": \"$newVersion - $COMMIT_MSG\",\"body\": $prBody}" $releaseUrl
 
 echo $newVersion >> VERSION
 unset GITHUB_TOKEN_TAG
